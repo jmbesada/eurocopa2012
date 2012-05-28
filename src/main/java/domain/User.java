@@ -56,6 +56,8 @@ public class User extends AbstractGenericDomainObject implements Comparable<User
 	@Override
 	public int compareTo(User user) {
 		// TODO Auto-generated method stub
-		return -scoring.compareTo(user.getScoring());
+		int result=-scoring.compareTo(user.getScoring());
+		if (result == 0) result=email.compareTo(user.getEmail());
+		return result;
 	}
 }

@@ -1,13 +1,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
-<div class="ui-widget" style="width:40%;text-align:center">
+<div class="ui-widget" style="width:35%;text-align:center">
 	<div class="ui-widget-header" style="line-height:2em;text-align:center">
-		Puntuaciones de los concursantes 
+		Puntuaciones de los concursantes (provisional)
 	</div>
 	<div class="ui-widget-content">
-		<table cellpadding="5px">
+		<table cellpadding="5px" id="usersTable" width="100%">
 			<thead>
-				<tr>
+				<tr class="ui-state-default" style="font-weight:bold">
 					<th >Usuario</th>
 					<th align="center">Puntuación</th>
 				</tr>
@@ -23,3 +23,6 @@
 		</table>
 	</div>
 </div>
+<script>
+	//$('#usersTable tbody tr:even').addClass("ui-state-highlight");
+</script>
