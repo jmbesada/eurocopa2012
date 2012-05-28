@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+       			http://www.springframework.org/schema/beans/spring-beans.xsd
+       		http://www.springframework.org/schema/context
+       			http://www.springframework.org/schema/context/spring-context.xsd
+       		http://www.springframework.org/schema/mvc
+       			http://www.springframework.org/schema/mvc/spring-mvc.xsd
+       		http://www.springframework.org/schema/data/jpa
+       			http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
+
+ 		<context:property-placeholder location="classpath:config/database.properties"/>
+ 		
+ 		<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+ 		    <property name="prefix" value="/WEB-INF/jsp/"/>
+ 		    <property name="suffix" value=".jsp"/>
+ 		</bean>
+ 		
+ 		<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+			<property name="driverClassName" value="${database.driver}"/>
+			<property name="url" value="${database.url}"/>
+			<property name="username" value="${database.username}"/>
+			<property name="password" value="${database.password}"/>
+		</bean>
+		
+ 		<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+ 		    <property name="dataSource" ref="dataSource"/>
+ 		    <property name="packagesToScan" value="domain"/>
+ 		    <property name="jpaProperties">
+ 		        <map>
+ 		            <entry key="hibernate.hbm2ddl.auto" value="update"/>
+ 		            <entry key="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect"/>
+ 		        </map>
+ 		    </property>
+ 		    <property name="jpaVendorAdapter">
+ 		        <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/>
+ 		    </property>
+ 		</bean>
+ 		
+ 		<bean id="txManager" class="org.springframework.orm.jpa.JpaTransactionManager"/>
+ 		
+ 		<bean id="txTemplate" class="org.springframework.transaction.support.TransactionTemplate">
+ 		    <property name="transactionManager" ref="txManager"/>
+ 		</bean>
+ 		
+ 		
+ 		<context:component-scan base-package="controllers"/>
+ 		
+ 		<mvc:annotation-driven/>
+ 		
+ 		<jpa:repositories base-package="dao" entity-manager-factory-ref="entityManagerFactory"
+ 		    transaction-manager-ref="txManager"/>
+ 	
+		<mvc:view-controller view-name="common/home" path="/home"/>
+		
+		<mvc:view-controller view-name="bases/index" path="bases/index"/>
+</beans>
