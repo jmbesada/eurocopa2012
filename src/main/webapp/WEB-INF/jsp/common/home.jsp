@@ -36,7 +36,7 @@
 		</div>
 		<div id="score">
 			<c:if test="${param.tab == 1 }">
-				<jsp:include page="/services/score/index"/>
+				<jsp:include page="/services/scoring/index"/>
 			</c:if>
 		</div>
 		<div id="changePassword">
