@@ -13,9 +13,28 @@
 				</tr>
 			</thead>
 			<tbody class="ui-widget-content">
-				<c:forEach items="${users}" var="user">
+				<c:forEach items="${users}" var="user" varStatus="status">
 					<tr>
-						<td>${user.email }</td>
+						<td align="left">
+							<c:choose>
+								<c:when test="${status.index == 0 }">
+									<img src="${basePath}images/gold.png" style="margin-right:5px"/>
+								</c:when>
+								<c:when test="${status.index == 1 }">
+									<img src="${basePath}images/silver.png" style="margin-right:5px"/>
+								</c:when>
+								<c:when test="${status.index == 2 }">
+									<img src="${basePath}images/bronze.png" style="margin-right:5px"/>
+								</c:when>
+								<c:when test="${status.index == 3 }">
+									<img src="${basePath}images/crying.png" style="margin-right:5px"/>
+								</c:when>
+								<c:when test="${status.index >= 4 }">
+									<img src="${basePath}images/sad.png" style="margin-right:5px"/>
+								</c:when>
+							</c:choose>
+							${user.email }
+						</td>
 						<td align="center">0</td>
 					</tr>
 				</c:forEach>

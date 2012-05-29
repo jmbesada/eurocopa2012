@@ -1,6 +1,7 @@
 package controllers;
 
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import utils.Helper;
 import dao.BetRepository;
 import dao.CountryRepository;
+import dao.SystemParamRepository;
 import dao.UserRepository;
 import domain.Bet;
 import domain.Country;
@@ -31,6 +33,7 @@ public class BetController {
 	@Autowired BetRepository betRepository;
 	@Autowired UserRepository userRepository;
 	@Autowired CountryRepository countryRepository;
+	@Autowired SystemParamRepository systemParamRepository;
 	@Autowired TransactionTemplate txTemplate;
 	
 	private Logger logger=Logger.getLogger(BetController.class);
@@ -50,6 +53,8 @@ public class BetController {
 		model.addAttribute("countriesC", countriesC);
 		model.addAttribute("countriesD", countriesD);
 		model.addAttribute("positions",positions);
+		model.addAttribute("lastDayToBet", systemParamRepository.findOne(1l).getLastDayToBet());
+		model.addAttribute("today", new Date());
 		logger.info("CountriesA:"+countriesA);
 	}
 	

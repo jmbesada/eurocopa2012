@@ -126,7 +126,7 @@
 		</td>
 	</tr>
 	<tr>
-		<td><input type="button" value="Guardar apuestas"/></td>
+		<td><input id="saveBets" type="button" value="Guardar apuestas"/></td>
 	</tr>
 </table>
 
@@ -138,6 +138,9 @@
 <script>
 	$(document).ready(function(){
 		fillBets();
+		<c:if test="${today > lastDayToBet}">
+			disableSaveBets();
+		</c:if>
 	});
 	$('input[type=button]').button();
 	$('input[type=button]').click(function(){
@@ -205,6 +208,10 @@
 			<c:set var="countryId" value="${bet.country.id}"/>
 			$('select[data-country=${countryId}]').val((${bet.position}+1));
 		</c:forEach>
+	}
+	function disableSaveBets(){
+		$('#saveBets').addClass('ui-state-disabled').unbind('click');
+		
 	}
 	
 </script>
