@@ -3,6 +3,13 @@ body{
 	padding:2px;
 }
 
+.banner{
+	background-image:url(../images/ball.png);
+	background-repeat:no-repeat;
+	background-position:left center;
+	opacity:10%;
+}
+
 #logo{
 	background-image:url('../images/logo.png');
 	background-position:right top;

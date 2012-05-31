@@ -14,7 +14,7 @@
 <body class="ui-widget-overlay">
 	<div id="logo"></div>
 	<div  class="ui-widget">
-		<div class="ui-widget-header" style="text-align:center;height:100px;line-height:50px">
+		<div class="ui-widget-header banner" style="text-align:center;height:100px;line-height:50px">
 			<h1>Mis Apuestas De La Eurocopa 2012</h1>
 		</div>
 	</div>
