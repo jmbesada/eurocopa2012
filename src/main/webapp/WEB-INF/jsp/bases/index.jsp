@@ -29,10 +29,10 @@
 			</li>
 			
 		</ol>
-		<p style="font-weight:bold">Sistema de puntuación de la primera fase (provisional)</p>
+		<p style="font-weight:bold">Sistema de puntuación de la primera fase (definitivo)</p>
 		<ol>
 			<li>
-				Si se acierta los dos primeros de un grupo dado recibe una bonificación de 4 puntos.
+				Si se acierta los dos primeros de un grupo dado en el orden correcto recibe una bonificación de 4 puntos.
 			</li>
 			<li>
 				Si se acierta los dos primeros en un grupo dado pero en orden inverso recibe una bonificación de 3 puntos.
@@ -42,7 +42,7 @@
 				2 puntos por acertar un equipo que pase a cuartos.
 			</li>
 			<li>
-				Por cada posición que se acierte recibe 1 punto.
+				Por cada pais que acierte su posición exacta recibe 1 punto.
 			</li>
 		</ol>        
 	</div>

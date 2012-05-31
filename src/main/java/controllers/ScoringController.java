@@ -1,5 +1,6 @@
 package controllers;
 
+import java.util.Date;
 import java.util.List;
 import java.util.TreeSet;
 
@@ -12,6 +13,7 @@ import org.springframework.transaction.support.TransactionTemplate;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import dao.CountryRepository;
 import dao.UserRepository;
 import domain.User;
 
@@ -20,6 +22,7 @@ import domain.User;
 public class ScoringController {
 
 	@Autowired UserRepository userRepository;
+	@Autowired CountryRepository countryRepository;
 	@Autowired TransactionTemplate txTemplate;
 	private Logger logger=Logger.getLogger(ScoringController.class);
 	
@@ -46,6 +49,16 @@ public class ScoringController {
 		});
 	
 	}
+	
+	@RequestMapping("groupsScoring")
+	public void groupsScoring(Model model){
+		model.addAttribute("now", new Date());
+		model.addAttribute("groupA",countryRepository.findByGroup_NameOrderByClassificationAsc("Grupo A"));
+		model.addAttribute("groupB",countryRepository.findByGroup_NameOrderByClassificationAsc("Grupo B"));
+		model.addAttribute("groupC",countryRepository.findByGroup_NameOrderByClassificationAsc("Grupo C"));
+		model.addAttribute("groupD",countryRepository.findByGroup_NameOrderByClassificationAsc("Grupo D"));
+	}
+	
 	
 	private void calculateScoring(User user){
 		user.setScoring(0d);

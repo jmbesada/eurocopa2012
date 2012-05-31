@@ -14,6 +14,7 @@ public class Country extends AbstractGenericDomainObject {
 	private Group group;
 	private String iconPath;
 	private Integer classification;
+	private Integer points;
 
 	@Column(name="NAME")
 	public String getName() {
@@ -50,5 +51,14 @@ public class Country extends AbstractGenericDomainObject {
 	}
 	public void setClassification(Integer classification) {
 		this.classification = classification;
+	}
+
+	@Column(name="POINTS")
+	public Integer getPoints() {
+		return points;
+	}
+
+	public void setPoints(Integer points) {
+		this.points = points;
 	}
 }
