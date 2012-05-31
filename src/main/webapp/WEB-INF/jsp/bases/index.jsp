@@ -6,7 +6,8 @@
 		<p style="font-weight:bold">Condiciones generales</p>  
 		<ol>
 			<li>
-				Cada uno elige la posición de los equipos dentro de cada grupo desde la pestaña de mis apuestas. <br/>
+				Cada participante deberá eligir la posición de los paises para cada uno de los 
+				grupos mediante la pestaña de mis apuestas.
 			</li>
 			<li>
 				Una vez llegados a cuartos sólo los que tengan las 8 mejores puntuaciones pasan a la 
@@ -14,7 +15,7 @@
 				de optar a ninguno de los premios.
 			</li>
 			<li>
-				Entre los 8 finalistas que han llegado a cuartos el que tenga más puntos es el primero 
+				Entre los 8 finalistas que han llegado a cuartos, el que tenga más puntos es el primero 
 				en escoger el equipo que crea que va a ganar, el segundo elige de los equipos restantes y 
 				así sucesivamente. 
 			</li>
