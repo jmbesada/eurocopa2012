@@ -45,6 +45,9 @@
 			<li>
 				Por cada pais que acierte su posición exacta recibe 1 punto.
 			</li>
-		</ol>        
+			<li>
+				A igualdad de puntos al término de la primera fase se desempatará echándolo a suertes.
+			</li>
+		</ol>      
 	</div>
 </div>

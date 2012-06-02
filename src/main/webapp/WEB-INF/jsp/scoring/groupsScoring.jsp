@@ -64,7 +64,7 @@
 				<td>
 					<div id="group1" class="ui-widget">
 						<div class="ui-widget-header">
-							Grupo 1
+							Grupo 3
 						</div>
 						<div class="ui-widget-content">
 							<table id="groupATable">
@@ -88,7 +88,7 @@
 				<td>
 					<div id="group1" class="ui-widget">
 						<div class="ui-widget-header">
-							Grupo 1
+							Grupo 4
 						</div>
 						<div class="ui-widget-content">
 							<table id="groupATable">

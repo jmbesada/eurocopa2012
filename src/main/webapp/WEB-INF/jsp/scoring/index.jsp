@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <div class="ui-widget" style="width:35%;text-align:center">
 	<div class="ui-widget-header ui-corner-all">
@@ -13,6 +14,7 @@
 				</tr>
 			</thead>
 			<tbody class="ui-widget-content">
+				<c:set var="numItems" value="${fn:length(users)}"/>
 				<c:forEach items="${users}" var="user" varStatus="status">
 					<tr>
 						<td align="left">
@@ -26,16 +28,19 @@
 								<c:when test="${status.index == 2 }">
 									<img src="${basePath}images/bronze.png" style="margin-right:5px"/>
 								</c:when>
-								<c:when test="${status.index == 3 }">
+								<c:when test="${status.index == (numItems-2) }">
 									<img src="${basePath}images/crying.png" style="margin-right:5px"/>
 								</c:when>
-								<c:when test="${status.index >= 4 }">
-									<img src="${basePath}images/sad.png" style="margin-right:5px"/>
+								<c:when test="${status.index == (numItems-1) }">
+									<img src="${basePath}images/verySad.png" style="margin-right:5px"/>
 								</c:when>
+								<c:otherwise>
+									<img src="${basePath}images/sad.png" style="margin-right:5px"/>
+								</c:otherwise>
 							</c:choose>
 							${user.email }
 						</td>
-						<td align="center">0</td>
+						<td align="center">${user.scoring } Puntos</td>
 					</tr>
 				</c:forEach>
 			</tbody>

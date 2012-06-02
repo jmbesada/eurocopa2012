@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import dao.CountryRepository;
 import dao.UserRepository;
+import domain.Bet;
+import domain.Country;
 import domain.User;
 
 @Controller
@@ -61,6 +63,139 @@ public class ScoringController {
 	
 	
 	private void calculateScoring(User user){
-		user.setScoring(0d);
+		List<Country> groupA=countryRepository.findByGroup_NameOrderByClassificationAsc("Grupo A");
+		List<Country> groupB=countryRepository.findByGroup_NameOrderByClassificationAsc("Grupo B");
+		List<Country> groupC=countryRepository.findByGroup_NameOrderByClassificationAsc("Grupo C");
+		List<Country> groupD=countryRepository.findByGroup_NameOrderByClassificationAsc("Grupo D");
+		
+		//Group A's score
+		double scoreA=calculateScoringFirstLevel(groupA, user.getBets());
+		if (scoreA == 0) scoreA+=calculateScoringSecondLevel(groupA, user.getBets());
+		if (scoreA == 0) scoreA+=calculateScoringThirdLevel(groupA, user.getBets());
+		scoreA+=calculateScoringFourthLevel(groupA, user.getBets());
+		logger.info("User "+user.getEmail()+" has got "+scoreA+" in the groupA");
+		
+		//Group B's score
+		double scoreB=calculateScoringFirstLevel(groupB, user.getBets());
+		if (scoreB == 0) scoreB+=calculateScoringSecondLevel(groupB, user.getBets());
+		if (scoreB == 0) scoreB+=calculateScoringThirdLevel(groupB, user.getBets());
+		scoreB+=calculateScoringFourthLevel(groupB, user.getBets());
+		logger.info("User "+user.getEmail()+" has got "+scoreB+" in the groupB");
+		
+		//Group C's score
+		double scoreC=calculateScoringFirstLevel(groupC, user.getBets());
+		if (scoreC == 0) scoreC+=calculateScoringSecondLevel(groupC, user.getBets());
+		if (scoreC == 0) scoreC+=calculateScoringThirdLevel(groupC, user.getBets());
+		scoreC+=calculateScoringFourthLevel(groupC, user.getBets());
+		logger.info("User "+user.getEmail()+" has got "+scoreC+" in the groupC");
+		
+		//Group D's score
+		double scoreD=calculateScoringFirstLevel(groupD, user.getBets());
+		if (scoreD == 0) scoreD+=calculateScoringSecondLevel(groupD, user.getBets());
+		if (scoreD == 0) scoreD+=calculateScoringThirdLevel(groupD, user.getBets());
+		scoreD+=calculateScoringFourthLevel(groupD, user.getBets());
+		logger.info("User "+user.getEmail()+" has got "+scoreD+" in the groupD");
+		
+		//Calculate total score
+		user.setScoring(scoreA+scoreB+scoreC+scoreD);
 	}
+	
+	private Integer calculateScoringFirstLevel(List<Country> groupCountries,List<Bet> bets){
+		int score=4;
+		Country firstCountry=groupCountries.get(0);
+		Country secondCountry=groupCountries.get(1);
+		for (Bet bet:bets){
+			if (bet.getCountry().equals(firstCountry)){
+				//logger.info("----->"+bet.getCountry()+";"+bet.getPosition());
+				if (bet.getPosition() != 1) {
+					score=0;
+					break;
+				}
+			}
+			else if(bet.getCountry().equals(secondCountry)){
+				//logger.info("----->"+bet.getCountry()+";"+bet.getPosition());
+				if (bet.getPosition() != 2){
+					score=0;
+					break;
+				}
+				
+			}
+		}
+		return score;
+	}
+	
+	private Integer calculateScoringSecondLevel(List<Country> groupCountries,List<Bet> bets){
+		int score=3;
+		Country firstCountry=groupCountries.get(0);
+		Country secondCountry=groupCountries.get(1);
+		for (Bet bet:bets){
+			if (bet.getCountry().equals(firstCountry)){
+				if (bet.getPosition() != 2) {
+					score=0;
+					break;
+				}
+			}
+			else if(bet.getCountry().equals(secondCountry)){
+				if (bet.getPosition() != 1){
+					score=0;
+					break;
+				}
+			}
+		}
+		return score;
+	}
+	
+	private Integer calculateScoringThirdLevel(List<Country> groupCountries,List<Bet> bets){
+		int score=0;
+		Country firstCountry=groupCountries.get(0);
+		Country secondCountry=groupCountries.get(1);
+		for (Bet bet:bets){
+			if (bet.getCountry().equals(firstCountry)){
+				if (bet.getPosition() == 2 || bet.getPosition() == 1) {
+					score=2;
+					break;
+				}
+			}
+			else if(bet.getCountry().equals(secondCountry)){
+					if (bet.getPosition() == 2 || bet.getPosition() == 1) {
+						score=2;
+						break;
+					}
+			}
+		}
+		return score;
+	}
+	
+	private Integer calculateScoringFourthLevel(List<Country> groupCountries,List<Bet> bets){
+		int score=0;
+		Country firstCountry=groupCountries.get(0);
+		Country secondCountry=groupCountries.get(1);
+		Country thirdCountry=groupCountries.get(2);
+		Country fourthCountry=groupCountries.get(3);
+		for (Bet bet:bets){
+			if (bet.getCountry().equals(firstCountry)){
+				if (firstCountry.getClassification() == bet.getPosition()) {
+					score+=1;
+				}
+			}
+			else if (bet.getCountry().equals(secondCountry)){
+				if (secondCountry.getClassification() == bet.getPosition()) {
+					score+=1;
+				}
+			}
+			else if (bet.getCountry().equals(thirdCountry)){
+				if (thirdCountry.getClassification() == bet.getPosition()) {
+					score+=1;
+				}
+			}
+			else if (bet.getCountry().equals(fourthCountry)){
+				if (fourthCountry.getClassification() == bet.getPosition()) {
+					score+=1;
+				}
+			}
+			
+		}
+		return score;
+	}
+	
 }
