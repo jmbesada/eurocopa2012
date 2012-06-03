@@ -28,6 +28,9 @@
 								<c:when test="${status.index == 2 }">
 									<img src="${basePath}images/bronze.png" style="margin-right:5px"/>
 								</c:when>
+								<c:when test="${status.index == (numItems-3) }">
+									<img src="${basePath}images/sad.png" style="margin-right:5px"/>
+								</c:when>
 								<c:when test="${status.index == (numItems-2) }">
 									<img src="${basePath}images/crying.png" style="margin-right:5px"/>
 								</c:when>
@@ -35,7 +38,7 @@
 									<img src="${basePath}images/verySad.png" style="margin-right:5px"/>
 								</c:when>
 								<c:otherwise>
-									<img src="${basePath}images/sad.png" style="margin-right:5px"/>
+									<img src="${basePath}images/smile.png" style="margin-right:5px"/>
 								</c:otherwise>
 							</c:choose>
 							${user.email }

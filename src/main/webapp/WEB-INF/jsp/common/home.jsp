@@ -14,6 +14,12 @@
 </head>
 <body class="ui-widget-overlay">
 	<div id="logo"></div>
+	<div id="openInbox">
+		<a href="#inbox">
+			<img src="${basePath}images/inbox.png" title="Enviar sugerencias"/>
+		</a>
+		
+	</div>
 	<div id="disconnect" class="ui-state-active ui-corner-all" >
 		<a href="/j_spring_security_logout">Desconectar</a>
 	</div>
@@ -57,6 +63,26 @@
 			</c:if>
 		</div>
 	</div>
+	
+	<div id="inbox" style="display:none;width:400px;">
+		<div class="ui-widget">
+			<div class="ui-widget-header" style="line-height:2em;text-align:center">
+				Introduce tus sugerencias:
+			</div>
+			<div class="ui-widget-content" style="text-align:center">
+				<div id="error" class="ui-state-error" style="display:none;width:98%;text-align:center">
+					Error al enviar el correo.
+				</div>
+				<form id="emailForm">
+					<textarea  name="emailText" rows="10" style="width:98%"></textarea>
+					<br/>
+					<input id="sendHints" type="button" value="Enviar sugerencias"/>
+				</form>
+				
+			</div>
+		</div>
+		
+	</div>
 
 	<script>
 		$(document).ready(function(){
@@ -84,7 +110,26 @@
 				else if (tab.index == 4) location.href='${basePath}services/home?tab=4';
 			});
 		});
+		$('#openInbox a').colorbox({
+			inline:true,
+			content:$(this).attr('href'),
+			onOpen:function(){
+				$('#inbox').show();
+				$('textarea').val('')
+			},
+			onCleanup:function(){
+				$('#inbox').hide();
+			}
+		});
 		
+		$('#sendHints').button().click(function(){
+			$.post('${basePath}services/actions/sendHint',$('#emailForm').serialize(),function(){
+				$.colorbox.close()
+			}).error(function(){
+				$('#error').show();
+			});
+		
+		});
 		
 	</script>
 </body>

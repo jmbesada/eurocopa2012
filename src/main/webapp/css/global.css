@@ -36,6 +36,15 @@ body{
 	font-size:1.1em;
 }
 
+#openInbox{
+	position:absolute;
+	right:150px;
+	top:100px;
+	z-index:100;
+	padding:7px;
+	font-size:1.1em;
+}
+
 #group1 .ui-widget-header, #group2 .ui-widget-header, #group3 .ui-widget-header, #group4 .ui-widget-header{
 	line-height:2em;
 	text-align:center;

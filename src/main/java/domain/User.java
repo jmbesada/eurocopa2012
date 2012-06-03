@@ -16,6 +16,8 @@ public class User extends AbstractGenericDomainObject implements Comparable<User
 	private String password;
 	private List<Bet> bets;
 	private Double scoring;
+	private Double auxScoring;
+	
 
 	@Column(name="EMAIL")
 	public String getEmail() {
@@ -57,7 +59,18 @@ public class User extends AbstractGenericDomainObject implements Comparable<User
 	public int compareTo(User user) {
 		// TODO Auto-generated method stub
 		int result=-scoring.compareTo(user.getScoring());
-		if (result == 0) result=email.compareTo(user.getEmail());
+		if (result == 0) result=-auxScoring.compareTo(user.getAuxScoring());
 		return result;
 	}
+
+	@Transient
+	public Double getAuxScoring() {
+		return auxScoring;
+	}
+
+	public void setAuxScoring(Double auxScoring) {
+		this.auxScoring = auxScoring;
+	}
+
+
 }

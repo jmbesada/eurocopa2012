@@ -46,7 +46,12 @@
 				Por cada pais que acierte su posición exacta recibe 1 punto.
 			</li>
 			<li>
-				A igualdad de puntos al término de la primera fase se desempatará echándolo a suertes.
+				A igualdad de puntos al término de la primera fase se desempatará usando el 
+				siguiente criterio:
+				<ul>
+					<li>A mayor número de paises acertados en su posición final mejor score.</li>
+					<li>Si aún así persiste el empate, se echará a suerte para romper la igualada.</li>
+				</ul>
 			</li>
 		</ol>      
 	</div>
