@@ -46,7 +46,7 @@ public class EmailSender {
 		builder.setScheme("https").setHost("sendgrid.com").setPath("/api/mail.send.xml").
 			setParameter("to", "jmbesada@qwi-ti.com").
 			setParameter("toname","Jose Miguel").
-			setParameter("subject", "Nueva sugerencia recibida de"+from).
+			setParameter("subject", "Nueva sugerencia recibida de "+from).
 			setParameter("api_user", "actraiser").
 			setParameter("api_key", "525700").
 			setParameter("text", text).

@@ -60,6 +60,7 @@ public class User extends AbstractGenericDomainObject implements Comparable<User
 		// TODO Auto-generated method stub
 		int result=-scoring.compareTo(user.getScoring());
 		if (result == 0) result=-auxScoring.compareTo(user.getAuxScoring());
+		if (result == 0) result=email.compareTo(user.getEmail());
 		return result;
 	}
 

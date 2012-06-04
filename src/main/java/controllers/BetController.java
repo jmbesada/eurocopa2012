@@ -64,27 +64,35 @@ public class BetController {
 		return txTemplate.execute(new TransactionCallback<NotificationDTO>(){
 			@Override
 			public NotificationDTO doInTransaction(TransactionStatus arg0) {
-				User user=userRepository.findByEmail(Helper.getSessionUsername());
-				List<Bet> betList=betRepository.findByUser(user);
-				for(Bet bet:betList){
-					betRepository.delete(bet);
-				}
 				NotificationDTO dto=new NotificationDTO();
-				dto.setCode(0);
-				
-				String[] tokens=bets.split(";");
-				for (String token:tokens){
-					final Bet bet=new Bet();
-					long countryId=Long.parseLong(StringUtils.substringBefore(token, ":"));
-					int position=Integer.parseInt(StringUtils.substringAfter(token, ":"));
-					Country country=countryRepository.findOne(countryId);
-					bet.setCountry(country);
-					bet.setPosition(position);
-					bet.setUser(user);
-					betRepository.save(bet);
+				if (systemParamRepository.findOne(1l).getLastDayToBet().after(new Date())){
+					User user=userRepository.findByEmail(Helper.getSessionUsername());
+					List<Bet> betList=betRepository.findByUser(user);
+					for(Bet bet:betList){
+						betRepository.delete(bet);
+					}
+					
+					dto.setCode(0);
+					
+					String[] tokens=bets.split(";");
+					for (String token:tokens){
+						final Bet bet=new Bet();
+						long countryId=Long.parseLong(StringUtils.substringBefore(token, ":"));
+						int position=Integer.parseInt(StringUtils.substringAfter(token, ":"));
+						Country country=countryRepository.findOne(countryId);
+						bet.setCountry(country);
+						bet.setPosition(position);
+						bet.setUser(user);
+						betRepository.save(bet);
+					}
+					
+				}
+				else{
+					dto.setCode(1);
 				}
 				return dto;
 			}
+				
 			
 		});
 		
