@@ -74,7 +74,7 @@
 					Error al enviar el correo.
 				</div>
 				<form id="emailForm">
-					<textarea  name="emailText" rows="10" style="width:98%"></textarea>
+					<textarea  name="hint" rows="10" style="width:98%"></textarea>
 					<br/>
 					<input id="sendHints" type="button" value="Enviar sugerencias"/>
 				</form>
