@@ -17,6 +17,7 @@ public class User extends AbstractGenericDomainObject implements Comparable<User
 	private List<Bet> bets;
 	private Double scoring;
 	private Double auxScoring;
+	private boolean drawed;
 	
 
 	@Column(name="EMAIL")
@@ -60,7 +61,11 @@ public class User extends AbstractGenericDomainObject implements Comparable<User
 		// TODO Auto-generated method stub
 		int result=-scoring.compareTo(user.getScoring());
 		if (result == 0) result=-auxScoring.compareTo(user.getAuxScoring());
-		if (result == 0) result=email.compareTo(user.getEmail());
+		if (result == 0) {
+			result=email.compareTo(user.getEmail());
+			setDrawed(true);
+			user.setDrawed(true);
+		}
 		return result;
 	}
 
@@ -71,6 +76,16 @@ public class User extends AbstractGenericDomainObject implements Comparable<User
 
 	public void setAuxScoring(Double auxScoring) {
 		this.auxScoring = auxScoring;
+	}
+
+	
+	@Transient
+	public boolean isDrawed() {
+		return drawed;
+	}
+
+	public void setDrawed(boolean drawed) {
+		this.drawed = drawed;
 	}
 
 

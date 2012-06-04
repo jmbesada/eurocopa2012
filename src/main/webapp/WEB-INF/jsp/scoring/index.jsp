@@ -16,7 +16,7 @@
 			<tbody class="ui-widget-content">
 				<c:set var="numItems" value="${fn:length(users)}"/>
 				<c:forEach items="${users}" var="user" varStatus="status">
-					<tr>
+					<tr class='${user.drawed == true ? "ui-state-highlight": "" }'>
 						<td align="left">
 							<c:choose>
 								<c:when test="${status.index == 0 }">
