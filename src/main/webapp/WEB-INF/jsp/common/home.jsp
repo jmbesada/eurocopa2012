@@ -123,10 +123,15 @@
 		});
 		
 		$('#sendHints').button().click(function(){
+			showAjaxLogo();
+			$(this).addClass('ui-state-disabled');
 			$.post('${basePath}services/actions/sendHint',$('#emailForm').serialize(),function(){
-				$.colorbox.close()
+				$('#sendHints').removeClass('ui-state-disabled');
+				$.colorbox.close();
+				hideAjaxLogo();
 			}).error(function(){
 				$('#error').show();
+				hideAjaxLogo();
 			});
 		
 		});

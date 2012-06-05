@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.velocity.VelocityEngineUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,6 +37,7 @@ public class ActionsController {
 	private Logger logger=Logger.getLogger(ActionsController.class);
 	
 	@RequestMapping("sendHint")
+	@Async
 	public void sendHint(HttpServletResponse response, @RequestParam("hint") String hint) throws Exception{
 		Object mailSender=context.getBean("mailSender");
 		if (mailSender instanceof JavaMailSender){
