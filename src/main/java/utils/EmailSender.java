@@ -50,7 +50,7 @@ public class EmailSender {
 			setParameter("api_user", "actraiser").
 			setParameter("api_key", "525700").
 			setParameter("html", html).
-			setParameter("from", "jmbesada@qwi-ti.com");
+			setParameter("from", "support@eurocopa2012");
 		URI uri=builder.build();
 		//logger.info(uri.toString().replace("%25", "%"));
 		HttpPost get=new HttpPost(uri.toString().replace("%25", "%"));
