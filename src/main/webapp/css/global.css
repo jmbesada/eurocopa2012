@@ -51,3 +51,8 @@ body{
 	width:275px;
 }
 
+#rememeber_me{
+	border-right:1px solid black;
+	padding:5px;
+}
+

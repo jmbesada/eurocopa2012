@@ -43,8 +43,11 @@
 							<td><input name="j_password" type="password" style="width:150px"/>
 						</tr>
 						<tr>
-							<td>Recuérdame</td>
-							<td><input type="checkbox" name="_spring_security_remember_me"/></td>
+							<td colspan="2">
+								<input type="checkbox" name="_spring_security_remember_me"/> 
+								<span id="rememeber_me">Recuérdame</span>
+								<a href="#forgetPassword">¿Olvidaste la contraseña?</a>
+							</td>
 						</tr>
 						<tr>
 							<td colspan="2" align="center">

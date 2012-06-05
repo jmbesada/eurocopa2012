@@ -37,7 +37,6 @@ public class ActionsController {
 	private Logger logger=Logger.getLogger(ActionsController.class);
 	
 	@RequestMapping("sendHint")
-	@Async
 	public void sendHint(HttpServletResponse response, @RequestParam("hint") String hint) throws Exception{
 		Object mailSender=context.getBean("mailSender");
 		if (mailSender instanceof JavaMailSender){
