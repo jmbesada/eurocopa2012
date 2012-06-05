@@ -7,7 +7,7 @@
         
     </beans>
     
-     <beans profile="default">
+     <beans profile="cloud">
      	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
             <property name="host" value="smtp.qwi-ti.com"/>
          	<property name="username" value="lcd261c"/>
@@ -21,7 +21,7 @@
         
     </beans>
     
-      <beans profile="cloud">
+      <beans profile="default">
      	<bean id="mailSender" class="utils.EmailSender">
             <property name="host" value="smtp.sendgrid.net"/>
          	<property name="username" value="actraiser"/>

@@ -43,10 +43,15 @@
 							<td><input name="j_password" type="password" style="width:150px"/>
 						</tr>
 						<tr>
+							<td>Recuérdame</td>
+							<td><input type="checkbox" name="_spring_security_remember_me"/></td>
+						</tr>
+						<tr>
 							<td colspan="2" align="center">
 								<input type='submit' value="Abrir sesión"/>
 							</td>
 						</tr>
+						
 					</tbody>
 				</table>
 			</form>

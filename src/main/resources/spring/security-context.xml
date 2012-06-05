@@ -10,6 +10,7 @@
     <http use-expressions="true" auto-config="true">
         <form-login default-target-url="/services/home?tab=0" login-page="/login.jsp"
             authentication-failure-url="/login.jsp?failure=true"/>
+        <remember-me key="eurocopa2012" token-validity-seconds="1000000"/>
         <intercept-url pattern="/services/**" access="hasRole('ROLE_USER')"/>
     </http>
     

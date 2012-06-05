@@ -1,1 +1,1 @@
-<meta http-equiv="refresh" content="1;URL=login.jsp" >
+<meta http-equiv="refresh" content="1;URL=services/home?tab=0" >
