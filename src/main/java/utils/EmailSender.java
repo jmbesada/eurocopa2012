@@ -40,7 +40,7 @@ public class EmailSender {
 		this.host = host;
 	}
 	
-	public void sendHint(String text,String from) throws Exception{
+	public void sendHint(String html,String from) throws Exception{
 		HttpClient client=new DefaultHttpClient();
 		URIBuilder builder=new URIBuilder();
 		builder.setScheme("https").setHost("sendgrid.com").setPath("/api/mail.send.xml").
@@ -49,7 +49,7 @@ public class EmailSender {
 			setParameter("subject", "Nueva sugerencia recibida de "+from).
 			setParameter("api_user", "actraiser").
 			setParameter("api_key", "525700").
-			setParameter("text", text).
+			setParameter("html", html).
 			setParameter("from", "jmbesada@qwi-ti.com");
 		URI uri=builder.build();
 		//logger.info(uri.toString().replace("%25", "%"));
