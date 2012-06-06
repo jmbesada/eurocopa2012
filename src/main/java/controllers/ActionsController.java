@@ -60,7 +60,7 @@ public class ActionsController {
 		if (user!=null){
 			mailSender.setTo(username);
 			Map<String,String> model=new HashMap<String,String>();
-			model.put("password", user.getEmail());
+			model.put("password", user.getPassword());
 			model.put("basePath", "http://eurocopa2012.cloudfoundry.com");
 			String text=VelocityEngineUtils.mergeTemplateIntoString(velocity, "sendPasswordTemplate.html", model);
 			mailSender.sendEmail(text,"Petición de contraseña");
