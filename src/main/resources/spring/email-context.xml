@@ -4,36 +4,13 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans 
        			http://www.springframework.org/schema/beans/spring-beans.xsd">    
     
-     <beans profile="default">
-     	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
-            <property name="host" value="smtp.qwi-ti.com"/>
-         	<property name="username" value="lcd261c"/>
-         	<property name="password" value="Jmb3s4d4"/>
-         	<property name="javaMailProperties">
-         	    <props>
-         	        <prop key="mail.smtp.auth">true</prop>
-         	    </props>
-         	</property>
+		<bean id="mailSender" class="utils.EmailSender">
+            <property name="from" value="support@eurocopa2012.com"/>
+            <property name="to" value="jmbesada@qwi-ti.com"/>
          </bean>
          
      	<bean class="org.springframework.ui.velocity.VelocityEngineFactoryBean">
           	<property name="resourceLoaderPath" value="classpath:templates"/>
       	</bean>
-        
-    </beans>
-    
-
-	<beans profile="cloud">
-     	<bean id="mailSender" class="utils.EmailSender">
-            <property name="host" value="smtp.sendgrid.net"/>
-         	<property name="username" value="actraiser"/>
-         	<property name="password" value="525700"/>
-         </bean>
-         
-     	<bean class="org.springframework.ui.velocity.VelocityEngineFactoryBean">
-          	<property name="resourceLoaderPath" value="classpath:templates"/>
-      	</bean>
-    </beans>
-    
       
 </beans>

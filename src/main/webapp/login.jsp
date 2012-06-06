@@ -59,6 +59,23 @@
 				</table>
 			</form>
 		</div>
+		
+		<div id="forgetPassword" style="display:none;width:400px">
+			<div class="ui-widget">
+				<div class="ui-widget-content" style="padding:5px">
+					<form action="#">
+						<fieldset style="width:80%">
+							<legend>Recuperación de contraseña</legend>
+							<label for="username">Introduce tu email:</label>
+							<input name="username" type="text" value="" size="20"/><br/><br/>
+							<input id="sendPassword" type="button" value="Enviar contraseña"/>
+						</fieldset>
+						
+					</form>
+					
+				</div>
+			</div>
+		</div>
 	</div>
 	<script>
 		$('body').height(screen.height);
@@ -69,6 +86,24 @@
 			offset:'0 -100px'
 		});
 		$('input[type=submit]').button();
+		$('a[href*=forgetPassword]').colorbox({
+			inline:true,
+			content:$(this).attr('href'),
+			onOpen:function(){$('#forgetPassword').show()},
+			onCleanup:function(){$('#forgetPassword').hide()}
+		});
+		$('#sendPassword').button().click(function(){
+			showAjaxLogo();
+			$.get('${basePath}services/actions/sendPassword',$('#forgetPassword form').serialize(),
+					function(){
+				$('#forgetPassword').hide();
+				$.colorbox.close();
+				hideAjaxLogo();
+			}).error(function(){
+				
+			});
+			
+		});
 	</script>
 </body>
 </html>

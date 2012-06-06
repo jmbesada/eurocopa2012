@@ -15,7 +15,7 @@
 			</tr>
 			<tr>
 				<td colspan="2">
-					<input type="button" value="Modificar"/>
+					<input id="modifyPassword" type="button" value="Modificar"/>
 				</td>
 			</tr>
 		</table>
@@ -27,7 +27,7 @@
 </div>
 <script>
 	$(document).ready(function(){
-		$('input[type=button]').click(function(){
+		$('#modifyPassword').button().click(function(){
 			$.getJSON($('form').attr('action'),$('form').serialize(),function(resp){
 				if (resp.code == 0) {
 					$('#credentialsSaved').dialog('open');
@@ -36,8 +36,6 @@
 			});
 		
 		});
-		
-		$('input[type=button]').button();
 		
 		$('#credentialsSaved').dialog({
 			autoOpen:false,

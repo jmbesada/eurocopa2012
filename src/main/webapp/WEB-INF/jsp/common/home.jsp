@@ -64,7 +64,7 @@
 		</div>
 	</div>
 	
-	<div id="inbox" style="display:none;width:400px;">
+	<div id="inbox" style="display:none;width:350px;">
 		<div class="ui-widget">
 			<div class="ui-widget-header" style="line-height:2em;text-align:center">
 				Introduce tus sugerencias:
@@ -73,8 +73,8 @@
 				<div id="error" class="ui-state-error" style="display:none;width:98%;text-align:center">
 					Error al enviar el correo.
 				</div>
-				<form id="emailForm">
-					<textarea  name="hint" rows="10" style="width:98%"></textarea>
+				<form action="#" id="emailForm">
+					<textarea  name="hint" rows="5" style="width:98%"></textarea>
 					<br/>
 					<input id="sendHints" type="button" value="Enviar sugerencias"/>
 				</form>
