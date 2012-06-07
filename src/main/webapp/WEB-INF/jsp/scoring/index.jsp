@@ -5,15 +5,15 @@
 	<div class="ui-widget-header ui-corner-all">
 		<h4>Puntuaciones de los concursantes (provisional)</h4>
 	</div>
-	<div class="ui-widget-content">
-		<table cellpadding="5px" id="usersTable" width="100%" class="ui-widget">
+	<div >
+		<table cellpadding="5px" id="usersTable" width="100%">
 			<thead >
 				<tr class="ui-state-default" style="font-weight:bold">
 					<th >Usuario</th>
 					<th align="center">Puntuación</th>
 				</tr>
 			</thead>
-			<tbody class="ui-widget-content">
+			<tbody >
 				<c:set var="numItems" value="${fn:length(users)}"/>
 				<c:forEach items="${users}" var="user" varStatus="status">
 					<tr class='${user.drawed == true ? "ui-state-highlight": "" }'>
@@ -43,7 +43,7 @@
 							</c:choose>
 							${user.email }
 						</td>
-						<td align="center">${user.scoring } Puntos</td>
+						<td align="center">${user.scoring }</td>
 					</tr>
 				</c:forEach>
 			</tbody>
@@ -51,5 +51,8 @@
 	</div>
 </div>
 <script>
-	//$('#usersTable tbody tr:even').addClass("ui-state-highlight");
+	$('#usersTable').dataTable({
+		bPaginate:false,
+		aaSorting: [[ 1, "desc" ]]
+	});
 </script>
