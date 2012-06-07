@@ -11,12 +11,13 @@
 				<tr class="ui-state-default" style="font-weight:bold">
 					<th >Usuario</th>
 					<th align="center">Puntuación</th>
+					<th>¿Empatado?</th>
 				</tr>
 			</thead>
 			<tbody >
 				<c:set var="numItems" value="${fn:length(users)}"/>
 				<c:forEach items="${users}" var="user" varStatus="status">
-					<tr class='${user.drawed == true ? "ui-state-highlight": "" }'>
+					<tr >
 						<td align="left">
 							<c:choose>
 								<c:when test="${status.index == 0 }">
@@ -44,6 +45,14 @@
 							${user.email }
 						</td>
 						<td align="center">${user.scoring }</td>
+						<td align="center">
+							<c:if test="${user.drawed}">
+								Si
+							</c:if>
+							<c:if test="${!user.drawed}">
+								No
+							</c:if>
+						</td>
 					</tr>
 				</c:forEach>
 			</tbody>
