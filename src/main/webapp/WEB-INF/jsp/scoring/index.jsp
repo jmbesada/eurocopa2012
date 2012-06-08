@@ -1,15 +1,15 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
-<div class="ui-widget" style="width:35%;text-align:center">
+<div class="ui-widget" style="text-align:center;width:650px">
 	<div class="ui-widget-header ui-corner-all">
 		<h4>Puntuaciones de los concursantes (provisional)</h4>
 	</div>
 	<div >
-		<table cellpadding="5px" id="usersTable" width="100%">
+		<table cellpadding="7px" id="usersTable" style="width:100%">
 			<thead >
 				<tr class="ui-state-default" style="font-weight:bold">
-					<th >Usuario</th>
+					<th>Usuario</th>
 					<th align="center">Puntuación</th>
 					<th>¿Empatado?</th>
 				</tr>
@@ -44,8 +44,8 @@
 							</c:choose>
 							${user.email }
 						</td>
-						<td align="center">${user.scoring }</td>
-						<td align="center">
+						<td align="center" width="130">${user.scoring }</td>
+						<td align="center" width="75">
 							<c:if test="${user.drawed}">
 								Si
 							</c:if>
@@ -62,6 +62,7 @@
 <script>
 	$('#usersTable').dataTable({
 		bPaginate:false,
-		aaSorting: [[ 1, "desc" ]]
+		aaSorting: [[ 1, "desc" ]],
+		bAutoWidth: false
 	});
 </script>
