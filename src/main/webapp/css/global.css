@@ -30,7 +30,7 @@ body{
 #disconnect{
 	position:absolute;
 	right:60px;
-	top:113px;
+	top:145px;
 	z-index:100;
 	padding:7px;
 	font-size:1.1em;
@@ -38,8 +38,8 @@ body{
 
 #openInbox{
 	position:absolute;
-	right:150px;
-	top:100px;
+	right:180px;
+	top:135px;
 	z-index:100;
 	padding:7px;
 	font-size:1.1em;

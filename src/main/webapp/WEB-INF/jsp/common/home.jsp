@@ -13,56 +13,61 @@
 	</style>
 </head>
 <body class="ui-widget-overlay">
-	<div id="logo"></div>
-	<div id="openInbox">
-		<a href="#inbox">
-			<img src="${basePath}images/inbox.png" title="Enviar sugerencias"/>
-		</a>
-		
-	</div>
-	<div id="disconnect" class="ui-state-active ui-corner-all" >
-		<a href="/j_spring_security_logout">Desconectar</a>
-	</div>
-	<div class="ui-widget">
-		<div class="ui-widget-header banner"" style="text-align:center;height:100px;line-height:50px;">
-			<h1>Mis Apuestas De La Eurocopa 2012</h1>
+	<div class="container" style="position:relative">
+		<div id="logo"></div>
+		<div class="span-24 ui-widget">
+			<div class="ui-widget-header banner " style="text-align:center;height:100px;line-height:50px;">
+					<h1 class="alt">Mis Apuestas De La Eurocopa 2012</h1>
+			</div>
+			<div id="openInbox">
+				<a href="#inbox">
+					<img src="${basePath}images/inbox.png" title="Enviar sugerencias"/>
+				</a>
+			</div>
+			<div id="disconnect" class="ui-state-active ui-corner-all" >
+				<a href="/j_spring_security_logout">Desconectar</a>
+			</div>
+		</div>
+		<hr/>
+		<hr/>
+		<div class="span-24" id="menu">
+			<ul>
+				<li><a href="#myBets">Mis apuestas</a></li>
+				<li><a href="#score">Puntuación</a></li>
+				<li><a href="#groupsScoring">Así va la Eurocopa</a></li>
+				<li><a href="#changePassword">Cambiar contraseña</a></li>
+				<li><a href="#bases">Bases del concurso</a></li>
+			</ul>
+			<div id="myBets">
+				<c:if test="${param.tab == 0 }">
+					<jsp:include page="/services/bet/index" />
+				</c:if>
+			</div>
+			<div id="score">
+				<c:if test="${param.tab == 1 }">
+					<jsp:include page="/services/scoring/index"/>
+				</c:if>
+			</div>
+			<div id="groupsScoring">
+				<c:if test="${param.tab == 2 }">
+					<jsp:include page="/services/scoring/groupsScoring"/>
+				</c:if>
+			</div>
+			<div id="changePassword">
+				<c:if test="${param.tab == 3 }">
+					<jsp:include page="/services/changePassword/index"/>
+				</c:if>
+			</div>
+			<div id="bases">
+				<c:if test="${param.tab == 4 }">
+					<jsp:include page="/services/bases/index"/>
+				</c:if>
+			</div>
 		</div>
 	</div>
+	
 
-	<div id="menu">
-		<ul>
-			<li><a href="#myBets">Mis apuestas</a></li>
-			<li><a href="#score">Puntuación</a></li>
-			<li><a href="#groupsScoring">Así va la Eurocopa</a></li>
-			<li><a href="#changePassword">Cambiar contraseña</a></li>
-			<li><a href="#bases">Bases del concurso</a></li>
-		</ul>
-		<div id="myBets">
-			<c:if test="${param.tab == 0 }">
-				<jsp:include page="/services/bet/index" />
-			</c:if>
-		</div>
-		<div id="score">
-			<c:if test="${param.tab == 1 }">
-				<jsp:include page="/services/scoring/index"/>
-			</c:if>
-		</div>
-		<div id="groupsScoring">
-			<c:if test="${param.tab == 2 }">
-				<jsp:include page="/services/scoring/groupsScoring"/>
-			</c:if>
-		</div>
-		<div id="changePassword">
-			<c:if test="${param.tab == 3 }">
-				<jsp:include page="/services/changePassword/index"/>
-			</c:if>
-		</div>
-		<div id="bases">
-			<c:if test="${param.tab == 4 }">
-				<jsp:include page="/services/bases/index"/>
-			</c:if>
-		</div>
-	</div>
+	
 	
 	<div id="inbox" style="display:none;width:350px;">
 		<div class="ui-widget">
