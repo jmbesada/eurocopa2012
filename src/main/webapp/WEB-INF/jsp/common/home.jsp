@@ -21,7 +21,7 @@
 			</div>
 			<div id="openInbox">
 				<a href="#inbox">
-					<img src="${basePath}images/inbox.png" title="Enviar sugerencias"/>
+					<img src="${basePath}images/inbox.png" title="Enviar sugerencias" border="0"/>
 				</a>
 			</div>
 			<div id="disconnect" class="ui-state-active ui-corner-all" >

@@ -12,7 +12,7 @@
 	</style>
 </head>
 <body class="ui-widget-overlay">
-	<div class="container" style="position:relative;">
+	<div class="container " style="position:relative;">
 		<div id="logo"></div>
 		<div class="span-24 ui-widget">	
 			<div class="ui-widget-header banner" style="text-align:center;height:100px;line-height:50px">
@@ -21,7 +21,7 @@
 		</div>
 		<hr/>
 		<hr/>
-		<div class="prepend-6 span-10 ui-widget" >
+		<div class="prepend-7 span-9 ui-widget" >
 			<div class="ui-widget-header ui-corner-top" style="text-align:center;line-height:2em">
 				Introduce tus credenciales en Mis Apuestas
 			</div>
