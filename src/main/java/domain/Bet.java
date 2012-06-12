@@ -12,7 +12,7 @@ public class Bet extends AbstractGenericDomainObject {
 
 	private Country country;
 	private Integer position;
-	private User user;
+	private User user; 
 	
 	@ManyToOne
 	@JoinColumn(name="COUNTRY_ID")
