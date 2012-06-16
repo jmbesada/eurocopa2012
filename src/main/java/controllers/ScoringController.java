@@ -12,12 +12,15 @@ import org.springframework.transaction.support.TransactionCallback;
 import org.springframework.transaction.support.TransactionTemplate;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import dao.CountryRepository;
 import dao.UserRepository;
 import domain.Bet;
 import domain.Country;
 import domain.User;
+import dto.UserDetailDTO;
 
 @Controller
 @RequestMapping("/scoring/*")
@@ -61,6 +64,40 @@ public class ScoringController {
 		model.addAttribute("groupD",countryRepository.findByGroup_NameOrderByClassificationAsc("Grupo D"));
 	}
 	
+	@RequestMapping("userDetail")
+	@ResponseBody
+	public UserDetailDTO userDetail(@RequestParam("username") String username){
+		List<Country> groupA=countryRepository.findByGroup_NameOrderByClassificationAsc("Grupo A");
+		List<Country> groupB=countryRepository.findByGroup_NameOrderByClassificationAsc("Grupo B");
+		List<Country> groupC=countryRepository.findByGroup_NameOrderByClassificationAsc("Grupo C");
+		List<Country> groupD=countryRepository.findByGroup_NameOrderByClassificationAsc("Grupo D");
+		User user=userRepository.findByEmail(username);
+		UserDetailDTO dto=new UserDetailDTO();
+		dto.setFirstLevelScoring(calculateScoringFirstLevel(groupA, user.getBets())+
+				calculateScoringFirstLevel(groupB, user.getBets())+calculateScoringFirstLevel(groupC, user.getBets())+
+				calculateScoringFirstLevel(groupD, user.getBets()));
+		dto.setSecondLevelScoring(calculateScoringSecondLevel(groupA, user.getBets())+
+				calculateScoringSecondLevel(groupB, user.getBets())+calculateScoringSecondLevel(groupC, user.getBets())+
+				calculateScoringSecondLevel(groupD, user.getBets()));
+		int thirdLevelScoring=0;
+		if (calculateScoringFirstLevel(groupA, user.getBets()) == 0 && calculateScoringSecondLevel(groupA, user.getBets()) ==0){
+			thirdLevelScoring+=calculateScoringThirdLevel(groupA, user.getBets());
+		}
+		if (calculateScoringFirstLevel(groupB, user.getBets()) == 0 && calculateScoringSecondLevel(groupB, user.getBets()) ==0){
+			thirdLevelScoring+=calculateScoringThirdLevel(groupB, user.getBets());
+		}
+		if (calculateScoringFirstLevel(groupC, user.getBets()) == 0 && calculateScoringSecondLevel(groupC, user.getBets()) ==0){
+			thirdLevelScoring+=calculateScoringThirdLevel(groupC, user.getBets());
+		}
+		if (calculateScoringFirstLevel(groupD, user.getBets()) == 0 && calculateScoringSecondLevel(groupD, user.getBets()) ==0){
+			thirdLevelScoring+=calculateScoringThirdLevel(groupD, user.getBets());
+		}
+		dto.setThirdLevelScoring(thirdLevelScoring);
+		dto.setFourthLevelScoring(calculateScoringFourthLevel(groupA, user.getBets())+
+				calculateScoringFourthLevel(groupB, user.getBets())+calculateScoringFourthLevel(groupC, user.getBets())+
+				calculateScoringFourthLevel(groupD, user.getBets()));
+		return dto;
+	}
 	
 	private void calculateScoring(User user){
 		List<Country> groupA=countryRepository.findByGroup_NameOrderByClassificationAsc("Grupo A");

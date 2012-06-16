@@ -4,9 +4,14 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+
+import enums.Gender;
 
 @Entity
 @Table(name="T_USERS")
@@ -18,7 +23,18 @@ public class User extends AbstractGenericDomainObject implements Comparable<User
 	private Double scoring;
 	private Double auxScoring;
 	private boolean drawed;
+	private Gender gender;
 	
+
+	@Column(name="GENDER")
+	@Enumerated(EnumType.STRING)
+	public Gender getGender() {
+		return gender;
+	}
+
+	public void setGender(Gender gender) {
+		this.gender = gender;
+	}
 
 	@Column(name="EMAIL")
 	public String getEmail() {
@@ -38,7 +54,7 @@ public class User extends AbstractGenericDomainObject implements Comparable<User
 		this.password = password;
 	}
 
-	@OneToMany(mappedBy="user")
+	@OneToMany(mappedBy="user",fetch=FetchType.EAGER)
 	public List<Bet> getBets() {
 		return bets;
 	}

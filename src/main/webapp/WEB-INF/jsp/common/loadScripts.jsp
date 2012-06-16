@@ -13,3 +13,4 @@
 <script src="${basePath}js/global.js"></script>
 <script src="${basePath}js/jquery.colorbox-min.js"></script>
 <script src="${basePath}js/jquery.dataTables.min.js"></script>
+<script src="http://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
