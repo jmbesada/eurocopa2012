@@ -32,7 +32,7 @@
 	<br/>
 		<br/>
 		(*) Si eres uno de los agraciados que has pasado a la fase final, la aplicación te pedirá que introduzcas la selección
-		  que crees que va a ganar la eurocopa, de entre las selecciones que queden por elegir en ese momento.
+		  que crees que va a ganar la eurocopa, de entre todas las selecciones que queden por elegir en ese momento.
 		  <br/>
 		  <br/>
 		  Hasta que el concursante que te antecede en la clasificación no eliga país no podrás seleccionar tu equipo. De esa manera, cuando el primero
