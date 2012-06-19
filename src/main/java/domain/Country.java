@@ -15,6 +15,16 @@ public class Country extends AbstractGenericDomainObject {
 	private String iconPath;
 	private Integer classification;
 	private Integer points;
+	private Boolean qualified;
+
+	@Column(name="QUALIFIED")
+	public Boolean getQualified() {
+		return qualified;
+	}
+
+	public void setQualified(Boolean qualified) {
+		this.qualified = qualified;
+	}
 
 	@Column(name="NAME")
 	public String getName() {

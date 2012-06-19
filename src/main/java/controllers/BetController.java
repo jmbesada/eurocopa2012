@@ -1,5 +1,6 @@
 package controllers;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -26,6 +27,7 @@ import domain.Bet;
 import domain.Country;
 import domain.User;
 import dto.BooleanDTO;
+import dto.CountryDTO;
 import dto.NotificationDTO;
 
 @Controller
@@ -122,6 +124,28 @@ public class BetController {
 			}
 		}
 		return dto;
+	}
+	
+	@RequestMapping("countriesToChoose")
+	@ResponseBody
+	public List<CountryDTO> countriesToChoose(){
+		List<Country> countries=countryRepository.findByQualified(true);
+		List<User> users=userRepository.findByQualifiedOrderByFinalPosAsc(true);
+		List<CountryDTO> dtoList=new ArrayList<CountryDTO>();
+		for (Country country:countries){
+			CountryDTO dto=new CountryDTO();
+			dto.setName(country.getName());
+			dtoList.add(dto);
+		}
+		for (User user:users){
+			if (user.getSelectedCountryFinalPhase()!=null){
+				CountryDTO dto=new CountryDTO();
+				dto.setName(user.getSelectedCountryFinalPhase().getName());
+				dtoList.remove(dto);
+			}
+		}
+		logger.info(dtoList);
+		return dtoList; 
 	}
 	
 	

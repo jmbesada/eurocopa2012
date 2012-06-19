@@ -93,6 +93,21 @@
 		</div>
 		
 	</div>
+	
+	<div id="introduceWinnerCountry" style="display:none">
+		<div class="ui-widget">
+			<div class="ui-state-highlight" style="line-height:2em;text-align:center">
+				Elige la selección del siguiente despegable:
+				<br/>
+				<select id="countryToSelect" name="countryToSelect" style="width:150px">
+					
+				</select>
+				
+			</div>
+			(*) Una vez hecho la elección no se podrá rectificar.
+		</div>
+		
+	</div>
 
 	<script>
 		$(document).ready(function(){
@@ -134,7 +149,32 @@
 			if (!resp1.true) $('#menu').tabs('disable',1);
 			else{
 				$.getJSON('${basePath}services/bet/isMyTurn',null,function(resp2){
-					console.log(resp2.true);
+					if (resp2.true){
+						console.log("Introduce winner country");
+						$('#introduceWinnerCountry').dialog({
+							title:'Congratulations!!!!!!!!!!!! Te has clasificado para la ronda final.',
+							modal:true,
+							width:550,
+							buttons:{
+								'Guardar selección':function(){
+									
+								},
+								'Elegir más tarde': function(){
+									$('#introduceWinnerCountry').dialog('close');
+								}
+							},
+							open:function(){
+								$.getJSON('${basePath}services/bet/countriesToChoose',null,function(resp){
+									$.each(resp,function(index,country){
+										$('#countryToSelect').append("<option>"+country.name+"</option>");
+									});
+									
+								})
+							}
+						})
+						
+						
+					}
 				});
 			}
 		});
