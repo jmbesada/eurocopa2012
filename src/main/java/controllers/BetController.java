@@ -12,6 +12,7 @@ import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.TransactionCallback;
 import org.springframework.transaction.support.TransactionTemplate;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -24,6 +25,7 @@ import dao.UserRepository;
 import domain.Bet;
 import domain.Country;
 import domain.User;
+import dto.BooleanDTO;
 import dto.NotificationDTO;
 
 @Controller
@@ -55,7 +57,7 @@ public class BetController {
 		model.addAttribute("positions",positions);
 		model.addAttribute("lastDayToBet", systemParamRepository.findOne(1l).getLastDayToBet());
 		model.addAttribute("today", new Date());
-		logger.info("CountriesA:"+countriesA);
+		//logger.info("CountriesA:"+countriesA);
 	}
 	
 	@RequestMapping("saveBets")
@@ -99,4 +101,17 @@ public class BetController {
 		
 	}
 	
+	@RequestMapping("isFirstPhaseFinished")
+	@ResponseBody
+	public BooleanDTO isFirstPhaseFinished(){
+		BooleanDTO dto=new BooleanDTO();
+		dto.setTrue(systemParamRepository.findOne(1l).isFirstPhaseFinished());
+		return dto;
+	}
+	
+	
+	@RequestMapping("betsTwoPhase")
+	public void betsTwoPhase(ModelMap model){
+		model.addAttribute("users", userRepository.findByQualifiedOrderByFinalPosAsc(true));
+	}
 }

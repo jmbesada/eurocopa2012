@@ -7,7 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -24,7 +26,38 @@ public class User extends AbstractGenericDomainObject implements Comparable<User
 	private Double auxScoring;
 	private boolean drawed;
 	private Gender gender;
+	private Boolean qualified;
+	private Country selectedCountryFinalPhase;
+	private Integer finalPos;
 	
+
+	@Column(name="FINAL_POS")
+	public Integer getFinalPos() {
+		return finalPos;
+	}
+
+	public void setFinalPos(Integer finalPos) {
+		this.finalPos = finalPos;
+	}
+
+	@OneToOne
+	@JoinColumn(name="SELECTED_COUNTRY_ID")
+	public Country getSelectedCountryFinalPhase() {
+		return selectedCountryFinalPhase;
+	}
+
+	public void setSelectedCountryFinalPhase(Country selectedCountryFinalPhase) {
+		this.selectedCountryFinalPhase = selectedCountryFinalPhase;
+	}
+
+	@Column(name="QUALIFIED")
+	public Boolean getQualified() {
+		return qualified;
+	}
+
+	public void setQualified(Boolean qualified) {
+		this.qualified = qualified;
+	}
 
 	@Column(name="GENDER")
 	@Enumerated(EnumType.STRING)

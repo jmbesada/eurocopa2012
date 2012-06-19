@@ -11,6 +11,17 @@ import javax.persistence.Table;
 public class SystemParam extends AbstractGenericDomainObject {
 
 	private Date lastDayToBet;
+	private boolean firstPhaseFinished;
+
+	
+	@Column(name="IS_FIRST_PHASE_FINISHED")
+	public boolean isFirstPhaseFinished() {
+		return firstPhaseFinished;
+	}
+
+	public void setFirstPhaseFinished(boolean firstPhaseFinished) {
+		this.firstPhaseFinished = firstPhaseFinished;
+	}
 
 	@Column(name="LAST_DAY_TO_BET")
 	public Date getLastDayToBet() {

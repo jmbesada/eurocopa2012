@@ -32,32 +32,37 @@
 		<hr/>
 		<div class="span-24" id="menu">
 			<ul>
-				<li><a href="#myBets">Mis apuestas</a></li>
+				<li><a href="#myBets1">Mis apuestas (1º Fase)</a></li>
+				<li><a href="#myBets2">Mis apuestas (Fase final)</a></li>
 				<li><a href="#score">Puntuación</a></li>
 				<li><a href="#groupsScoring">Así va la Eurocopa</a></li>
-				<li><a href="#changePassword">Cambiar contraseña</a></li>
 				<li><a href="#bases">Bases del concurso</a></li>
 			</ul>
-			<div id="myBets">
+			<div id="myBets1">
 				<c:if test="${param.tab == 0 }">
 					<jsp:include page="/services/bet/index" />
 				</c:if>
 			</div>
-			<div id="score">
+			<div id="myBets2">
 				<c:if test="${param.tab == 1 }">
+					<jsp:include page="/services/bet/betsTwoPhase"/>
+				</c:if>
+			</div>
+			<div id="score">
+				<c:if test="${param.tab == 2 }">
 					<jsp:include page="/services/scoring/index"/>
 				</c:if>
 			</div>
 			<div id="groupsScoring">
-				<c:if test="${param.tab == 2 }">
+				<c:if test="${param.tab == 3 }">
 					<jsp:include page="/services/scoring/groupsScoring"/>
 				</c:if>
 			</div>
-			<div id="changePassword">
-				<c:if test="${param.tab == 3 }">
+			<!--<div id="changePassword">
+				<c:if test="${param.tab == 4 }">
 					<jsp:include page="/services/changePassword/index"/>
 				</c:if>
-			</div>
+			</div>-->
 			<div id="bases">
 				<c:if test="${param.tab == 4 }">
 					<jsp:include page="/services/bases/index"/>
@@ -91,28 +96,12 @@
 
 	<script>
 		$(document).ready(function(){
-			$('#menu').tabs();
-			<c:if test="${param.tab == 0 }">
-				$('#menu').tabs('select',0);
-			</c:if>
-			<c:if test="${param.tab == 1 }">
-				$('#menu').tabs('select',1);
-			</c:if>
-			<c:if test="${param.tab == 2 }">
-				$('#menu').tabs('select',2);
-			</c:if>
-			<c:if test="${param.tab == 3 }">
-				$('#menu').tabs('select',3);
-			</c:if>
-			<c:if test="${param.tab == 4 }">
-				$('#menu').tabs('select',4);
-			</c:if>
+			$('#menu').tabs({
+				selected:${param.tab}
+			});
+		
 			$('#menu').bind('tabsselect',function(event,tab){
-				if (tab.index == 0) location.href='${basePath}services/home?tab=0';
-				else if (tab.index == 1) location.href='${basePath}services/home?tab=1';
-				else if (tab.index == 2) location.href='${basePath}services/home?tab=2';
-				else if (tab.index == 3) location.href='${basePath}services/home?tab=3';
-				else if (tab.index == 4) location.href='${basePath}services/home?tab=4';
+				location.href='${basePath}services/home?tab='+tab.index;
 			});
 		});
 		$('#openInbox a').colorbox({
@@ -140,7 +129,10 @@
 			});
 		
 		});
-		
+	
+		$.getJSON('${basePath}services/bet/isFirstPhaseFinished',null,function(resp){
+			if (!resp.true) $('#menu').tabs('disable',1);
+		});
 	</script>
-</body>
+	
 </html>
