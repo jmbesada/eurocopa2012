@@ -109,6 +109,21 @@ public class BetController {
 		return dto;
 	}
 	
+	@RequestMapping("isMyTurn")
+	@ResponseBody
+	public BooleanDTO isMyTurn(){
+		BooleanDTO dto=new BooleanDTO();
+		String loggedUser=Helper.getSessionUsername();
+		for (User user:userRepository.findByQualifiedOrderByFinalPosAsc(true)){
+			if (user.getSelectedCountryFinalPhase()==null){
+				if (user.getEmail().equals(loggedUser)) dto.setTrue(true);
+				else dto.setTrue(false);
+				break;
+			}
+		}
+		return dto;
+	}
+	
 	
 	@RequestMapping("betsTwoPhase")
 	public void betsTwoPhase(ModelMap model){

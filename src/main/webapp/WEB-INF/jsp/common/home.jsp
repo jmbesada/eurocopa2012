@@ -130,8 +130,13 @@
 		
 		});
 	
-		$.getJSON('${basePath}services/bet/isFirstPhaseFinished',null,function(resp){
-			if (!resp.true) $('#menu').tabs('disable',1);
+		$.getJSON('${basePath}services/bet/isFirstPhaseFinished',null,function(resp1){
+			if (!resp1.true) $('#menu').tabs('disable',1);
+			else{
+				$.getJSON('${basePath}services/bet/isMyTurn',null,function(resp2){
+					console.log(resp2.true);
+				});
+			}
 		});
 	</script>
 	
