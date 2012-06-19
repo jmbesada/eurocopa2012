@@ -32,7 +32,7 @@
 		<hr/>
 		<div class="span-24" id="menu">
 			<ul>
-				<li><a href="#myBets1">Mis apuestas (1º Fase)</a></li>
+				<li><a href="#myBets1">Mis apuestas (Fase de grupos)</a></li>
 				<li><a href="#myBets2">Mis apuestas (Fase final)</a></li>
 				<li><a href="#score">Puntuación</a></li>
 				<li><a href="#groupsScoring">Así va la Eurocopa</a></li>

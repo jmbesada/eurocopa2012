@@ -3,7 +3,7 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <div class="ui-widget" style="text-align:center;width:650px">
 	<div class="ui-widget-header ui-corner-all">
-		<h4>Puntuaciones de los concursantes (provisional)</h4>
+		<h4>Puntuaciones de los concursantes (Definitivo)</h4>
 	</div>
 	<div >
 		<table  cellpadding="7px" cellspacing="0" id="usersTable" style="width:100%">
