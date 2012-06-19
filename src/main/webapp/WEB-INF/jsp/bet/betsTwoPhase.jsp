@@ -5,7 +5,7 @@
 		Listado de participantes que pasan a la fase final.
 	</div>
 	<div class="ui-widget-content">
-		<table cellpadding="3">
+		<table id="users" cellpadding="7px" cellspacing="0">
 			<thead>
 				<tr class="ui-state-default">
 					<th width="70px">Puesto</th>
@@ -30,3 +30,10 @@
 		</table>
 	</div>
 </div>
+<script>
+	$('#users').dataTable({
+		bPaginate:false,
+		bFilter:false
+	});
+	
+</script>
