@@ -14,4 +14,6 @@ public interface CountryRepository extends CrudRepository<Country, Long> {
 	public List<Country> findByGroup_NameOrderByClassificationAsc(String groupName);
 	
 	public List<Country> findByQualified(Boolean qualified);
+	
+	public Country findByName(String name);
 }

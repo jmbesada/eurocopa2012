@@ -99,7 +99,7 @@
 			<div class="ui-state-highlight" style="line-height:2em;text-align:center">
 				Elige la selección del siguiente despegable:
 				<br/>
-				<select id="countryToSelect" name="countryToSelect" style="width:150px">
+				<select id="countryToSelect" name="countryName" style="width:150px">
 					
 				</select>
 				
@@ -157,7 +157,10 @@
 							width:550,
 							buttons:{
 								'Guardar selección':function(){
-									
+									$.post('${basePath}services/bet/selectCountry',$('#countryToSelect').serialize(),function(){
+										$('#introduceWinnerCountry').dialog('close');
+										location.href='${basePath}services/home?tab=1';
+									},'json');
 								},
 								'Elegir más tarde': function(){
 									$('#introduceWinnerCountry').dialog('close');

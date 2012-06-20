@@ -5,6 +5,8 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,7 @@ import org.springframework.transaction.support.TransactionTemplate;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -152,5 +155,25 @@ public class BetController {
 	@RequestMapping("betsTwoPhase")
 	public void betsTwoPhase(ModelMap model){
 		model.addAttribute("users", userRepository.findByQualifiedOrderByFinalPosAsc(true));
+	}
+	
+	@RequestMapping(value="selectCountry",method=RequestMethod.POST)
+	@ResponseBody
+	public NotificationDTO selectCountry(HttpServletRequest request, final @RequestParam("countryName") String countryName){
+		logger.info(request.getCharacterEncoding());
+		txTemplate.execute(new TransactionCallback<Void>(){
+			@Override
+			public Void doInTransaction(TransactionStatus arg0) {
+				Country country=countryRepository.findByName(countryName);
+				User user=userRepository.findByEmail(Helper.getSessionUsername());
+				user.setSelectedCountryFinalPhase(country);
+				return null;
+			}
+			
+		});
+		
+		NotificationDTO dto=new NotificationDTO();
+		dto.setCode(0);
+		return dto;
 	}
 }
