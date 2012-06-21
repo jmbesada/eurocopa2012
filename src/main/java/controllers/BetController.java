@@ -166,7 +166,8 @@ public class BetController {
 			public Void doInTransaction(TransactionStatus arg0) {
 				Country country=countryRepository.findByName(countryName);
 				User user=userRepository.findByEmail(Helper.getSessionUsername());
-				user.setSelectedCountryFinalPhase(country);
+				if (user.getSelectedCountryFinalPhase() == null)
+					user.setSelectedCountryFinalPhase(country);
 				return null;
 			}
 			
