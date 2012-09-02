@@ -26,9 +26,9 @@ import dto.UserDetailDTO;
 @RequestMapping("/scoring/*")
 public class ScoringController {
 
-	@Autowired UserRepository userRepository;
-	@Autowired CountryRepository countryRepository;
-	@Autowired TransactionTemplate txTemplate;
+	@Autowired private UserRepository userRepository;
+	@Autowired private CountryRepository countryRepository;
+	@Autowired private TransactionTemplate txTemplate;
 	private Logger logger=Logger.getLogger(ScoringController.class);
 	
 	@RequestMapping("index")
@@ -108,29 +108,45 @@ public class ScoringController {
 		//Group A's score
 		double scoreA=calculateScoringFirstLevel(groupA, user.getBets());
 		double auxScoreA=calculateScoringFourthLevel(groupA, user.getBets());
-		if (scoreA == 0) scoreA+=calculateScoringSecondLevel(groupA, user.getBets());
-		if (scoreA == 0) scoreA+=calculateScoringThirdLevel(groupA, user.getBets());
+		if (scoreA == 0) {
+			scoreA+=calculateScoringSecondLevel(groupA, user.getBets());
+		}
+		if (scoreA == 0) {
+			scoreA+=calculateScoringThirdLevel(groupA, user.getBets());
+		}
 		logger.info("User "+user.getEmail()+" has got "+scoreA+" in the groupA");
 		
 		//Group B's score
 		double scoreB=calculateScoringFirstLevel(groupB, user.getBets());
 		double auxScoreB=calculateScoringFourthLevel(groupB, user.getBets());
-		if (scoreB == 0) scoreB+=calculateScoringSecondLevel(groupB, user.getBets());
-		if (scoreB == 0) scoreB+=calculateScoringThirdLevel(groupB, user.getBets());
+		if (scoreB == 0) {
+			scoreB+=calculateScoringSecondLevel(groupB, user.getBets());
+		}
+		if (scoreB == 0) {
+			scoreB+=calculateScoringThirdLevel(groupB, user.getBets());
+		}
 		logger.info("User "+user.getEmail()+" has got "+scoreB+" in the groupB");
 		
 		//Group C's score
 		double scoreC=calculateScoringFirstLevel(groupC, user.getBets());
 		double auxScoreC=calculateScoringFourthLevel(groupC, user.getBets());
-		if (scoreC == 0) scoreC+=calculateScoringSecondLevel(groupC, user.getBets());
-		if (scoreC == 0) scoreC+=calculateScoringThirdLevel(groupC, user.getBets());
+		if (scoreC == 0) {
+			scoreC+=calculateScoringSecondLevel(groupC, user.getBets());
+		}
+		if (scoreC == 0) {
+			scoreC+=calculateScoringThirdLevel(groupC, user.getBets());
+		}
 		logger.info("User "+user.getEmail()+" has got "+scoreC+" in the groupC");
 		
 		//Group D's score
 		double scoreD=calculateScoringFirstLevel(groupD, user.getBets());
 		double auxScoreD=calculateScoringFourthLevel(groupD, user.getBets());
-		if (scoreD == 0) scoreD+=calculateScoringSecondLevel(groupD, user.getBets());
-		if (scoreD == 0) scoreD+=calculateScoringThirdLevel(groupD, user.getBets());
+		if (scoreD == 0) {
+			scoreD+=calculateScoringSecondLevel(groupD, user.getBets());
+		}
+		if (scoreD == 0) {
+			scoreD+=calculateScoringThirdLevel(groupD, user.getBets());
+		}
 		logger.info("User "+user.getEmail()+" has got "+scoreD+" in the groupD");
 		
 		//Calculate total score

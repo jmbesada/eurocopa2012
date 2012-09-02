@@ -37,11 +37,11 @@ import dto.NotificationDTO;
 @RequestMapping("/bet/*")
 public class BetController {
 	
-	@Autowired BetRepository betRepository;
-	@Autowired UserRepository userRepository;
-	@Autowired CountryRepository countryRepository;
-	@Autowired SystemParamRepository systemParamRepository;
-	@Autowired TransactionTemplate txTemplate;
+	@Autowired private BetRepository betRepository;
+	@Autowired private UserRepository userRepository;
+	@Autowired private CountryRepository countryRepository;
+	@Autowired private SystemParamRepository systemParamRepository;
+	@Autowired private TransactionTemplate txTemplate;
 	
 	private Logger logger=Logger.getLogger(BetController.class);
 
@@ -121,8 +121,12 @@ public class BetController {
 		String loggedUser=Helper.getSessionUsername();
 		for (User user:userRepository.findByQualifiedOrderByFinalPosAsc(true)){
 			if (user.getSelectedCountryFinalPhase()==null){
-				if (user.getEmail().equals(loggedUser)) dto.setTrue(true);
-				else dto.setTrue(false);
+				if (user.getEmail().equals(loggedUser)) {
+					dto.setTrue(true);
+				}
+				else {
+					dto.setTrue(false);
+				}
 				break;
 			}
 		}
@@ -166,8 +170,9 @@ public class BetController {
 			public Void doInTransaction(TransactionStatus arg0) {
 				Country country=countryRepository.findByName(countryName);
 				User user=userRepository.findByEmail(Helper.getSessionUsername());
-				if (user.getSelectedCountryFinalPhase() == null)
+				if (user.getSelectedCountryFinalPhase() == null){
 					user.setSelectedCountryFinalPhase(country);
+				}	
 				return null;
 			}
 			

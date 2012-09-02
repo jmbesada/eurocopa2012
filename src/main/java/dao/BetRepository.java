@@ -9,5 +9,6 @@ import domain.User;
 
 public interface BetRepository extends CrudRepository<Bet, Long> {
 
-	public List<Bet> findByUser(User user);
+	List<Bet> findByUser(User user);
+	
 }

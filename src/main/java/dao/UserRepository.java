@@ -8,7 +8,7 @@ import domain.User;
 
 public interface UserRepository extends CrudRepository<User, Long> {
 
-	public User findByEmail(String email);
-	public List<User> findByQualifiedOrderByFinalPosAsc(Boolean qualified);
+	User findByEmail(String email);
+	List<User> findByQualifiedOrderByFinalPosAsc(Boolean qualified);
 	
 }

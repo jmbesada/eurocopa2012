@@ -7,7 +7,6 @@ import java.net.URISyntaxException;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.impl.client.DefaultHttpClient;
@@ -21,7 +20,7 @@ public class EmailSender {
 	private Logger logger=Logger.getLogger(EmailSender.class);
 
 	
-	public void sendEmail(String html,String subject) throws Exception{
+	public void sendEmail(String html,String subject) throws URISyntaxException, ClientProtocolException, IOException{
 		HttpClient client=new DefaultHttpClient();
 		URIBuilder builder=new URIBuilder();
 		builder.setScheme("https").setHost("sendgrid.com").setPath("/api/mail.send.xml").

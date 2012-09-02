@@ -2,15 +2,12 @@ package controllers;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import utils.Helper;
-
 import dao.UserRepository;
 import dto.NotificationDTO;
 
@@ -18,9 +15,7 @@ import dto.NotificationDTO;
 @RequestMapping("/changePassword/*")
 public class ChangePasswordController {
 
-	@Autowired UserRepository userRepository;
-	
-	private Logger logger=Logger.getLogger(ChangePasswordController.class);
+	@Autowired private UserRepository userRepository;
 	
 	@RequestMapping("index")
 	public void index(){

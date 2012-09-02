@@ -5,7 +5,6 @@ import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.http.client.ClientProtocolException;
@@ -13,28 +12,23 @@ import org.apache.log4j.Logger;
 import org.apache.velocity.app.VelocityEngine;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
-import org.springframework.mail.MailSender;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.velocity.VelocityEngineUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import dao.UserRepository;
-import domain.User;
-
 import utils.EmailSender;
 import utils.Helper;
+import dao.UserRepository;
+import domain.User;
 
 @Controller
 @RequestMapping("/actions/*")
 public class ActionsController {
 
-	@Autowired ApplicationContext context;
-	@Autowired VelocityEngine velocity;
-	@Autowired UserRepository userRepository;
+	@Autowired private ApplicationContext context;
+	@Autowired private VelocityEngine velocity;
+	@Autowired private UserRepository userRepository;
 	
 	private Logger logger=Logger.getLogger(ActionsController.class);
 	
@@ -52,8 +46,7 @@ public class ActionsController {
 	}
 	
 	@RequestMapping("sendPassword")
-	public void sendPassword(HttpServletResponse response, @RequestParam("username") String username)
-		throws Exception{
+	public void sendPassword(HttpServletResponse response, @RequestParam("username") String username) throws ClientProtocolException, URISyntaxException, IOException {
 		logger.info("Password request:"+username);
 		EmailSender mailSender=context.getBean(EmailSender.class);
 		User user=userRepository.findByEmail(username);
